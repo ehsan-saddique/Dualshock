@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/intro_background"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="100dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="40dp"
+                android:layout_height="match_parent">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+            >
+
+                <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MAGMA RED"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginTop="32dp"
+                        android:textStyle="bold"
+                        android:textColor="#1B1A1A"
+                        android:textSize="@dimen/font_title"/>
+
+                <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$64.00"
+                        android:layout_below="@id/title"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="#878787"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="@dimen/font_price"/>
+
+                <ImageView
+                        android:id="@+id/display_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/img_dualshock_1" />
+
+                <Button
+                        android:id="@+id/buy"
+                        android:background="@drawable/ic_buy_button_bg"
+                        android:textColor="#4CAF50"
+                        android:textStyle="bold"
+                        android:text="BUY"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/margin_bottom_buy"
+                        android:layout_alignBottom="@id/name"
+                        android:textSize="@dimen/font_name"
+                        android:layout_width="@dimen/width_buy_button"
+                        android:layout_height="@dimen/height_buy_button"/>
+
+                <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DUALSHOCK 4"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/margin_bottom"
+                        android:textColor="#878787"
+                        android:textStyle="bold"
+                        android:layout_alignParentBottom="true"
+                        android:textSize="@dimen/font_name"/>
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</FrameLayout>

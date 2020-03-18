@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="margin_bottom">16dp</dimen>
+
+    <dimen name="font_title">18sp</dimen>
+    <dimen name="font_price">14sp</dimen>
+    <dimen name="font_name">10sp</dimen>
+
+    <dimen name="height_buy_button">35dp</dimen>
+    <dimen name="width_buy_button">132dp</dimen>
+</resources>
