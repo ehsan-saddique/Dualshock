@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.animation.*
+import android.widget.*
+import androidx.cardview.widget.CardView
 
 
 /**
@@ -13,57 +16,99 @@ import android.view.View
 
 class MainFragment : Fragment() {
 
-    private var mBackgroundColor: Int = 0
-    private var mPage: Int = 0
+    lateinit var item: DTOItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!arguments!!.containsKey(BACKGROUND_COLOR))
-            throw RuntimeException("Fragment must contain a \"$BACKGROUND_COLOR\" argument!")
-        mBackgroundColor = arguments!!.getInt(BACKGROUND_COLOR)
+        if (!arguments!!.containsKey(ITEM))
+            throw RuntimeException("Fragment must contain a \"$ITEM\" argument!")
+        item = arguments!!.getParcelable(ITEM)!!
 
-        if (!arguments!!.containsKey(PAGE))
-            throw RuntimeException("Fragment must contain a \"$PAGE\" argument!")
-        mPage = arguments!!.getInt(PAGE)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        // Select a layout based on the current page
-        val layoutResId: Int
-        when (mPage) {
-            0 -> layoutResId = R.layout.fragment_layout_1
-            else -> layoutResId = R.layout.fragment_layout_2
+        val view = activity?.layoutInflater?.inflate(R.layout.fragment_layout_1, container, false)
+
+        view?.tag = item.page
+
+        view?.findViewById<TextView>(R.id.title)?.text = item.title
+        view?.findViewById<TextView>(R.id.price)?.text = item.price
+        val card = view?.findViewById<CardView>(R.id.card_view)
+        val cardRelative = card?.findViewById<RelativeLayout>(R.id.card_relative)
+        val detailView = view?.findViewById<RelativeLayout>(R.id.detail_view)
+        val image = view?.findViewById<ImageView>(R.id.display_image)
+        val buy = cardRelative?.findViewById<Button>(R.id.buy)
+        val buyDetail = view?.findViewById<Button>(R.id.buy_detail)
+        image?.setImageResource(item.image)
+
+        buy?.setOnClickListener {
+            cardRelative.removeView(buy)
+            animateView(card, image!!, buy, detailView!!, buyDetail!!)
         }
-
-        // Inflate the layout resource file
-        val view = activity?.layoutInflater?.inflate(layoutResId, container, false)
-
-        // Set the current page index as the View's tag (useful in the PageTransformer)
-        view?.tag = mPage
 
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    fun animateView(cardView: CardView, imageView: ImageView, buyButton: Button, detailView: RelativeLayout, buyDetail: Button) {
+        val animationSet = AnimationSet(true)
 
-        // Set the background color of the root view to the color specified in newInstance()
-//        val background = view.findViewById<View>(R.id.intro_background)
-//        background.setBackgroundColor(mBackgroundColor)
+//        val a = TranslateAnimation(
+//            Animation.ABSOLUTE, 0f, Animation.ABSOLUTE, 200f,
+//            Animation.ABSOLUTE, 0f, Animation.ABSOLUTE, 800f
+//        )
+//        a.duration = 1000
+//
+//        val rect = Rect()
+//        view.getLocalVisibleRect(rect)
+//        val bottomimagevalue: Float = rect.width().toFloat()
+//        val rightimagevalue = rect.height().toFloat()
+//        val r = RotateAnimation(0f, 180f, bottomimagevalue, rightimagevalue)
+//        r.fillAfter = true
+////        r.startOffset = 1000
+//        r.duration = 1000
+//
+//        animationSet.addAnimation(a)
+//        animationSet.addAnimation(r)
+//
+//        view.startAnimation(animationSet)
+
+        val animImage = AnimationUtils.loadAnimation(activity, R.anim.image_anim)
+        val animCard = AnimationUtils.loadAnimation(activity, R.anim.card_anim)
+        val animBuyDetail = AnimationUtils.loadAnimation(activity, R.anim.buy_anim)
+
+        detailView.visibility = View.VISIBLE
+
+        imageView.startAnimation(animImage)
+        cardView.startAnimation(animCard)
+        buyDetail.startAnimation(animBuyDetail)
+
+        animImage.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {
+                //
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                val bounceAnim = AnimationUtils.loadAnimation(activity, R.anim.image_anim_bounce)
+                imageView.startAnimation(bounceAnim)
+            }
+
+            override fun onAnimationStart(animation: Animation?) {
+                //
+            }
+
+        })
     }
 
     companion object {
 
-        private val BACKGROUND_COLOR = "backgroundColor"
-        private val PAGE = "page"
+        private val ITEM = "item"
 
-        fun newInstance(backgroundColor: Int, page: Int): MainFragment {
+        fun newInstance(item: DTOItem): MainFragment {
             val frag = MainFragment()
             val b = Bundle()
-            b.putInt(BACKGROUND_COLOR, backgroundColor)
-            b.putInt(PAGE, page)
+            b.putParcelable(ITEM, item)
             frag.setArguments(b)
             return frag
         }

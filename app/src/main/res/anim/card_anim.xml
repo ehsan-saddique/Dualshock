@@ -1,0 +1,28 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+     android:fillAfter = "true"
+     android:duration="300"
+     android:fillEnabled = "true">
+    <!-- Rotate -->
+    <!--<rotate android:fromDegrees="0" android:toDegrees="180"-->
+            <!--android:pivotX="50%" android:pivotY="50%"-->
+            <!--android:duration="1000"-->
+            <!--android:interpolator="@android:anim/linear_interpolator" />-->
+    <!--&lt;!&ndash;  Left to right &ndash;&gt;-->
+    <!--<translate android:fromXDelta="0" android:toXDelta="0"-->
+               <!--android:fromYDelta="0" android:toYDelta="-200%" android:duration="1000"-->
+               <!--android:interpolator="@android:anim/linear_interpolator" />-->
+    <!--&lt;!&ndash;  Up and down bob &ndash;&gt;-->
+    <!--<translate android:fromXDelta="0" android:toXDelta="0"-->
+               <!--android:fromYDelta="30" android:toYDelta="-30" android:repeatMode="reverse"-->
+               <!--android:repeatCount="4" android:interpolator="@android:anim/linear_interpolator"-->
+               <!--android:duration="2000" />-->
+    <scale android:fromXScale="100%"
+           android:toXScale="200%"
+           android:fromYScale="100%"
+           android:toYScale="200%"
+           android:pivotX="50%"
+           android:pivotY="50%"
+    >
+
+    </scale>
+</set>
