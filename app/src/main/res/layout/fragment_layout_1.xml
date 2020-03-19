@@ -62,8 +62,8 @@
                     android:textStyle="bold"
                     android:text="BUY"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="@dimen/margin_bottom_buy"
-                    android:layout_alignBottom="@id/name"
+                    android:layout_below="@id/display_image"
+                    android:layout_marginTop="80dp"
                     android:textSize="@dimen/font_name"
                     android:layout_width="@dimen/width_buy_button"
                     android:layout_height="@dimen/height_buy_button"/>
@@ -74,10 +74,10 @@
                     android:layout_height="wrap_content"
                     android:text="DUALSHOCK 4"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="@dimen/margin_bottom"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/buy"
                     android:textColor="#878787"
                     android:textStyle="bold"
-                    android:layout_alignParentBottom="true"
                     android:textSize="@dimen/font_name"/>
 
         </RelativeLayout>
@@ -88,12 +88,10 @@
     <RelativeLayout
             android:id="@+id/detail_view"
             android:layout_width="match_parent"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="140dp"
             android:layout_marginBottom="100dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
             android:translationZ="100dp"
-            android:visibility="gone"
+            android:visibility="invisible"
             android:layout_height="match_parent">
 
         <RelativeLayout
@@ -102,37 +100,76 @@
         >
 
             <TextView
-                    android:id="@+id/title_detail"
+                    android:id="@+id/title_detail_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SECOND LAYOUT"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp"
-                    android:layout_marginTop="32dp"
+                    android:text="WAVE"
+                    android:layout_marginTop="44dp"
                     android:textStyle="bold"
-                    android:textColor="#1B1A1A"
-                    android:textSize="@dimen/font_title"/>
-
+                    android:includeFontPadding="false"
+                    android:visibility="visible"
+                    android:alpha="0.5"
+                    android:textColor="@color/colorBackground1"
+                    android:textSize="@dimen/font_title_detail"/>
             <TextView
-                    android:id="@+id/price_detail"
+                    android:id="@+id/title_detail_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$64.00"
-                    android:layout_below="@id/title_detail"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="#878787"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp"
-                    android:layout_marginTop="8dp"
-                    android:textSize="@dimen/font_price"/>
+                    android:text="BLUE"
+                    android:layout_below="@id/title_detail_1"
+                    android:textStyle="bold"
+                    android:includeFontPadding="false"
+                    android:layout_marginTop="-28dp"
+                    android:visibility="visible"
+                    android:alpha="0.5"
+                    android:textColor="@color/colorBackground1"
+                    android:textSize="@dimen/font_title_detail"/>
+
+            <RelativeLayout
+                    android:id="@+id/detail_container"
+                    android:layout_below="@id/title_detail_2"
+                    android:paddingStart="@dimen/margin_detail_left"
+                    android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/name_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DualShock 4"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#878787"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/font_name_detail"/>
+
+                <TextView
+                        android:id="@+id/category_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Wireless Controller"
+                        android:layout_below="@id/name_detail"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/font_category_detail"/>
+
+                <TextView
+                        android:id="@+id/description_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_description"
+                        android:layout_below="@id/category_detail"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#878787"
+                        android:textSize="@dimen/font_description_detail"/>
+
+            </RelativeLayout>
 
             <ImageView
                     android:id="@+id/display_image_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
                     android:visibility="invisible"
+                    android:layout_centerInParent="true"
                     android:src="@mipmap/img_dualshock_1" />
 
             <Button
@@ -142,23 +179,27 @@
                     android:textStyle="bold"
                     android:text="BUY"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="@dimen/margin_bottom_buy"
-                    android:layout_alignBottom="@id/name_detail"
+                    android:layout_below="@id/display_image_detail"
+                    android:layout_marginTop="60dp"
                     android:textSize="@dimen/font_name"
                     android:layout_width="@dimen/width_buy_button"
                     android:layout_height="@dimen/height_buy_button"/>
 
             <TextView
-                    android:id="@+id/name_detail"
+                    android:id="@+id/price_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DUALSHOCK 4"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="@dimen/margin_bottom"
-                    android:textColor="#878787"
-                    android:textStyle="bold"
-                    android:layout_alignParentBottom="true"
-                    android:textSize="@dimen/font_name"/>
+                    android:text="$54.00"
+                    android:textDirection="anyRtl"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="32dp"
+                    android:layout_alignTop="@id/buy_detail"
+                    android:layout_alignBottom="@id/buy_detail"
+                    android:includeFontPadding="false"
+                    android:gravity="end|center_vertical"
+                    android:textColor="#444444"
+                    android:textSize="@dimen/font_price_detail"/>
 
         </RelativeLayout>
 

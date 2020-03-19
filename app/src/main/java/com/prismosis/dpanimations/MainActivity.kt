@@ -8,19 +8,12 @@ import androidx.viewpager.widget.ViewPager
 import android.view.WindowManager
 import android.os.Build
 import android.view.View
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-
-
-
-
-
 
 
 class MainActivity : AppCompatActivity() {
 
     private var mViewPager: ViewPager? = null
+    private var mViewPagerAdapter: ViewPagerAdapter? = null
     var argbEvaluator = ArgbEvaluator()
     var color1 = 0
     var color2 = 0
@@ -42,7 +35,8 @@ class MainActivity : AppCompatActivity() {
         color2 = resources.getColor(R.color.colorBackground2, null)
 
         mViewPager = findViewById(R.id.viewpager)
-        mViewPager?.adapter = ViewPagerAdapter(supportFragmentManager)
+        mViewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        mViewPager?.adapter = mViewPagerAdapter
         mViewPager!!.setPageTransformer(false, ParallaxPagerTransformer())
 
 
@@ -76,5 +70,12 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onBackPressed() {
+        val manager = this.supportFragmentManager
+
+        val fragment = mViewPagerAdapter!!.getCurrentFragment()!!
+        manager.beginTransaction().detach(fragment).attach(fragment).commit()
     }
 }

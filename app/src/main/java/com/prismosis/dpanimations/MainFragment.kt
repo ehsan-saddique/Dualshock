@@ -38,6 +38,9 @@ class MainFragment : Fragment() {
         val card = view?.findViewById<CardView>(R.id.card_view)
         val cardRelative = card?.findViewById<RelativeLayout>(R.id.card_relative)
         val detailView = view?.findViewById<RelativeLayout>(R.id.detail_view)
+        val title = view?.findViewById<TextView>(R.id.title)
+        val price = view?.findViewById<TextView>(R.id.price)
+        val name = view?.findViewById<TextView>(R.id.name)
         val image = view?.findViewById<ImageView>(R.id.display_image)
         val buy = cardRelative?.findViewById<Button>(R.id.buy)
         val buyDetail = view?.findViewById<Button>(R.id.buy_detail)
@@ -45,6 +48,9 @@ class MainFragment : Fragment() {
 
         buy?.setOnClickListener {
             cardRelative.removeView(buy)
+            cardRelative.removeView(title)
+            cardRelative.removeView(price)
+            cardRelative.removeView(name)
             animateView(card, image!!, buy, detailView!!, buyDetail!!)
         }
 
@@ -54,49 +60,71 @@ class MainFragment : Fragment() {
     fun animateView(cardView: CardView, imageView: ImageView, buyButton: Button, detailView: RelativeLayout, buyDetail: Button) {
         val animationSet = AnimationSet(true)
 
-//        val a = TranslateAnimation(
-//            Animation.ABSOLUTE, 0f, Animation.ABSOLUTE, 200f,
-//            Animation.ABSOLUTE, 0f, Animation.ABSOLUTE, 800f
-//        )
-//        a.duration = 1000
-//
-//        val rect = Rect()
-//        view.getLocalVisibleRect(rect)
-//        val bottomimagevalue: Float = rect.width().toFloat()
-//        val rightimagevalue = rect.height().toFloat()
-//        val r = RotateAnimation(0f, 180f, bottomimagevalue, rightimagevalue)
-//        r.fillAfter = true
-////        r.startOffset = 1000
-//        r.duration = 1000
-//
-//        animationSet.addAnimation(a)
-//        animationSet.addAnimation(r)
-//
-//        view.startAnimation(animationSet)
 
         val animImage = AnimationUtils.loadAnimation(activity, R.anim.image_anim)
+        val animImageBounce = AnimationUtils.loadAnimation(activity, R.anim.image_anim_bounce)
         val animCard = AnimationUtils.loadAnimation(activity, R.anim.card_anim)
         val animBuyDetail = AnimationUtils.loadAnimation(activity, R.anim.buy_anim)
+        val animPriceDetail = AnimationUtils.loadAnimation(activity, R.anim.detail_price_anim)
+        val animTitleDetail1 = AnimationUtils.loadAnimation(activity, R.anim.detail_title_anim)
+        val animTitleDetail2 = AnimationUtils.loadAnimation(activity, R.anim.detail_title_anim)
+        val animTitleDetailBounce = AnimationUtils.loadAnimation(activity, R.anim.title_detail_anim_bounce)
+
+        val nameDetail = detailView.findViewById<TextView>(R.id.name_detail)
+        val categoryDetail = detailView.findViewById<TextView>(R.id.category_detail)
+        val descriptionDetail = detailView.findViewById<TextView>(R.id.description_detail)
+        val priceDetail = detailView.findViewById<TextView>(R.id.price_detail)
+        val titleDetail1 = detailView.findViewById<TextView>(R.id.title_detail_1)
+        val titleDetail2 = detailView.findViewById<TextView>(R.id.title_detail_2)
+
 
         detailView.visibility = View.VISIBLE
+        nameDetail.alpha = 0f
+        categoryDetail.alpha = 0f
+        descriptionDetail.alpha = 0f
 
         imageView.startAnimation(animImage)
         cardView.startAnimation(animCard)
         buyDetail.startAnimation(animBuyDetail)
+        priceDetail.startAnimation(animPriceDetail)
+
+        animTitleDetail2.startOffset = 100
+        titleDetail1.startAnimation(animTitleDetail1)
+        titleDetail2.startAnimation(animTitleDetail2)
 
         animImage.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationRepeat(animation: Animation?) {
-                //
-            }
+            override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
-                val bounceAnim = AnimationUtils.loadAnimation(activity, R.anim.image_anim_bounce)
-                imageView.startAnimation(bounceAnim)
+                imageView.startAnimation(animImageBounce)
+                nameDetail.animate().alpha(1f).duration = 800
+                categoryDetail.animate().setStartDelay(100).alpha(1f).duration = 800
+                descriptionDetail.animate().setStartDelay(300).alpha(1f).duration = 800
             }
 
-            override fun onAnimationStart(animation: Animation?) {
-                //
+            override fun onAnimationStart(animation: Animation?) {}
+
+        })
+
+        animTitleDetail1.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {}
+
+            override fun onAnimationEnd(animation: Animation?) {
+                titleDetail1.startAnimation(animTitleDetailBounce)
             }
+
+            override fun onAnimationStart(animation: Animation?) {}
+
+        })
+
+        animTitleDetail2.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {}
+
+            override fun onAnimationEnd(animation: Animation?) {
+                titleDetail2.startAnimation(animTitleDetailBounce)
+            }
+
+            override fun onAnimationStart(animation: Animation?) {}
 
         })
     }

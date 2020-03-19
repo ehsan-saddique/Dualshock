@@ -4,6 +4,9 @@ import android.graphics.Color
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import android.view.ViewGroup
+
+
 
 
 
@@ -12,6 +15,12 @@ import androidx.fragment.app.FragmentPagerAdapter
  */
 
 class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+
+    private var mCurrentFragment: Fragment? = null
+
+    fun getCurrentFragment(): Fragment? {
+        return mCurrentFragment
+    }
 
     override fun getItem(position: Int): Fragment {
         when (position) {
@@ -24,6 +33,13 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
         return 2
+    }
+
+    override fun setPrimaryItem(container: ViewGroup, position: Int, obj: Any) {
+        if (getCurrentFragment() !== obj) {
+            mCurrentFragment = obj as Fragment
+        }
+        super.setPrimaryItem(container, position, obj)
     }
 
 }

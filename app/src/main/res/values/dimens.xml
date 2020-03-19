@@ -8,4 +8,13 @@
 
     <dimen name="height_buy_button">50dp</dimen>
     <dimen name="width_buy_button">188dp</dimen>
+
+
+
+    <dimen name="margin_detail_left">24dp</dimen>
+    <dimen name="font_title_detail">80sp</dimen>
+    <dimen name="font_category_detail">23sp</dimen>
+    <dimen name="font_description_detail">20sp</dimen>
+    <dimen name="font_price_detail">28sp</dimen>
+    <dimen name="font_name_detail">16sp</dimen>
 </resources>

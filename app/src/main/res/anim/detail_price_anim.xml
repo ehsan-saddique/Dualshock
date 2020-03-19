@@ -1,8 +1,10 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
      android:fillAfter = "true"
-     android:duration="300"
      android:fillEnabled = "true">
-    <translate android:fromXDelta="0" android:toXDelta="-50%"
+    <translate android:fromXDelta="0" android:toXDelta="0" android:duration="0"
                android:fromYDelta="0" android:toYDelta="70%"
     />
+    <alpha android:fromAlpha="0"
+           android:toAlpha="1"
+           android:duration="1000"/>
 </set>
