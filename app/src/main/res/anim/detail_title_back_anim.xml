@@ -2,14 +2,9 @@
      android:duration="500"
      android:shareInterpolator="false">
 
-    <translate android:fromXDelta="-100%" android:toXDelta="5%"
+    <translate android:fromXDelta="0" android:toXDelta="-100%"
                android:fromYDelta="0" android:toYDelta="0"
                android:fillAfter = "true"
                android:fillEnabled = "true"
                android:interpolator="@android:anim/decelerate_interpolator" />
-
-    <!--<alpha android:fromAlpha="1"-->
-           <!--android:toAlpha="0"-->
-           <!--android:duration="100"-->
-           <!--android:interpolator="@android:anim/linear_interpolator" />-->
 </set>

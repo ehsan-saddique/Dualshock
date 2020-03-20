@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import android.view.WindowManager
 import android.os.Build
+import android.os.Handler
 import android.view.View
 
 
@@ -75,7 +76,10 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val manager = this.supportFragmentManager
 
-        val fragment = mViewPagerAdapter!!.getCurrentFragment()!!
-        manager.beginTransaction().detach(fragment).attach(fragment).commit()
+        val fragment = mViewPagerAdapter!!.getCurrentFragment() as MainFragment
+        fragment.onBackPressed()
+        Handler().postDelayed({
+            manager.beginTransaction().detach(fragment).attach(fragment).commit()
+        }, 400)
     }
 }

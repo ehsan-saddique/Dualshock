@@ -17,6 +17,7 @@ import androidx.cardview.widget.CardView
 class MainFragment : Fragment() {
 
     lateinit var item: DTOItem
+    private var isDetailView = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class MainFragment : Fragment() {
         image?.setImageResource(item.image)
 
         buy?.setOnClickListener {
+            isDetailView = true
             cardRelative.removeView(buy)
             cardRelative.removeView(title)
             cardRelative.removeView(price)
@@ -132,6 +134,46 @@ class MainFragment : Fragment() {
             override fun onAnimationStart(animation: Animation?) {}
 
         })
+    }
+
+    fun onBackPressed() {
+        if (!isDetailView) {
+            return
+        }
+
+        val card = view?.findViewById<CardView>(R.id.card_view)!!
+        val detailView = view?.findViewById<RelativeLayout>(R.id.detail_view)!!
+        val image = view?.findViewById<ImageView>(R.id.display_image)!!
+        val buyDetail = view?.findViewById<Button>(R.id.buy_detail)!!
+        val bottomImage = view?.findViewById<ImageView>(R.id.bottom_image)!!
+
+        val titleDetail1 = detailView.findViewById<TextView>(R.id.title_detail_1)
+        val titleDetail2 = detailView.findViewById<TextView>(R.id.title_detail_2)
+        val nameDetail = detailView.findViewById<TextView>(R.id.name_detail)
+        val categoryDetail = detailView.findViewById<TextView>(R.id.category_detail)
+        val descriptionDetail = detailView.findViewById<TextView>(R.id.description_detail)
+        val priceDetail = detailView.findViewById<TextView>(R.id.price_detail)
+
+        val animImageBack = AnimationUtils.loadAnimation(activity, R.anim.image_anim_back)
+        val animCardBack = AnimationUtils.loadAnimation(activity, R.anim.card_back_anim)
+        val animBuyDetailBack = AnimationUtils.loadAnimation(activity, R.anim.buy_back_anim)
+        val animTitleDetailBack = AnimationUtils.loadAnimation(activity, R.anim.detail_title_back_anim)
+
+        titleDetail1.clearAnimation()
+        titleDetail2.clearAnimation()
+
+        image.startAnimation(animImageBack)
+        card.startAnimation(animCardBack)
+        buyDetail.startAnimation(animBuyDetailBack)
+        titleDetail1.visibility = View.INVISIBLE
+        titleDetail2.visibility = View.INVISIBLE
+        bottomImage.animate().setDuration(200).alpha(0f).start()
+        nameDetail.visibility = View.INVISIBLE
+        categoryDetail.visibility = View.INVISIBLE
+        descriptionDetail.visibility = View.INVISIBLE
+        priceDetail.animate().setDuration(200).alpha(0f).start()
+
+        isDetailView = false
     }
 
     companion object {

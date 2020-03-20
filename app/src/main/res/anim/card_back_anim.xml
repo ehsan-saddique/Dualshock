@@ -1,0 +1,15 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+     android:fillAfter = "true"
+     android:duration="300"
+     android:fillEnabled = "true">
+
+    <scale android:fromXScale="200%"
+           android:toXScale="100%"
+           android:fromYScale="200%"
+           android:toYScale="100%"
+           android:pivotX="50%"
+           android:pivotY="50%"
+    >
+
+    </scale>
+</set>
