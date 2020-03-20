@@ -44,6 +44,7 @@ class MainFragment : Fragment() {
         val image = view?.findViewById<ImageView>(R.id.display_image)
         val buy = cardRelative?.findViewById<Button>(R.id.buy)
         val buyDetail = view?.findViewById<Button>(R.id.buy_detail)
+        val bottomImage = view?.findViewById<ImageView>(R.id.bottom_image)
         image?.setImageResource(item.image)
 
         buy?.setOnClickListener {
@@ -51,13 +52,14 @@ class MainFragment : Fragment() {
             cardRelative.removeView(title)
             cardRelative.removeView(price)
             cardRelative.removeView(name)
-            animateView(card, image!!, buy, detailView!!, buyDetail!!)
+            animateView(card, image!!, buy, detailView!!, buyDetail!!, bottomImage!!)
         }
 
         return view
     }
 
-    fun animateView(cardView: CardView, imageView: ImageView, buyButton: Button, detailView: RelativeLayout, buyDetail: Button) {
+    fun animateView(cardView: CardView, imageView: ImageView, buyButton: Button,
+                    detailView: RelativeLayout, buyDetail: Button, bottomImage: ImageView) {
         val animationSet = AnimationSet(true)
 
 
@@ -69,6 +71,7 @@ class MainFragment : Fragment() {
         val animTitleDetail1 = AnimationUtils.loadAnimation(activity, R.anim.detail_title_anim)
         val animTitleDetail2 = AnimationUtils.loadAnimation(activity, R.anim.detail_title_anim)
         val animTitleDetailBounce = AnimationUtils.loadAnimation(activity, R.anim.title_detail_anim_bounce)
+        val animBottomImage = AnimationUtils.loadAnimation(activity, R.anim.bottom_image_anim)
 
         val nameDetail = detailView.findViewById<TextView>(R.id.name_detail)
         val categoryDetail = detailView.findViewById<TextView>(R.id.category_detail)
@@ -96,7 +99,9 @@ class MainFragment : Fragment() {
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
+                bottomImage.visibility = View.VISIBLE
                 imageView.startAnimation(animImageBounce)
+                bottomImage.startAnimation(animBottomImage)
                 nameDetail.animate().alpha(1f).duration = 800
                 categoryDetail.animate().setStartDelay(100).alpha(1f).duration = 800
                 descriptionDetail.animate().setStartDelay(300).alpha(1f).duration = 800
