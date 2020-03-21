@@ -7,10 +7,11 @@ import android.os.Parcelable
  * Created by Ehsan Saddique on 2020-03-18
  */
 data class DTOItem(val title: String, val price: String,
-                   val image: Int, val backgroudColor: Int, val page: Int) : Parcelable {
+                   val image: Int, val backgroudColor: Int, val titleColor: Int, val page: Int) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
+        parcel.readInt(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt()
@@ -22,6 +23,7 @@ data class DTOItem(val title: String, val price: String,
         parcel.writeString(price)
         parcel.writeInt(image)
         parcel.writeInt(backgroudColor)
+        parcel.writeInt(titleColor)
         parcel.writeInt(page)
     }
 

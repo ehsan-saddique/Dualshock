@@ -16,6 +16,7 @@ class ParallaxPagerTransformer() : ViewPager.PageTransformer {
 
         val displayImage = page.findViewById<View>(R.id.display_image)
         val price = page.findViewById<View>(R.id.price)
+        val name = page.findViewById<View>(R.id.name)
 
         val pagePosition = page.tag as Int
 
@@ -23,13 +24,18 @@ class ParallaxPagerTransformer() : ViewPager.PageTransformer {
             if (pagePosition == 0) {
                 if (displayImage != null) {
                     val displayImageWidth = displayImage.width
-                    val imageTranslation = position * displayImageWidth * 0.3f
+                    val imageTranslation = position * displayImageWidth * 0.4f
                     displayImage.translationX = imageTranslation
                 }
                 if (price != null) {
                     val priceWidth = price.width
-                    val priceTranslation = position * priceWidth * 0.5f
+                    val priceTranslation = position * priceWidth * 0.6f
                     price.translationX = priceTranslation
+                }
+                if (name != null) {
+                    val nameWidth = name.width
+                    val nameTranslation = position * nameWidth * 0.6f
+                    name.translationX = nameTranslation
                 }
             }
             else {
@@ -40,8 +46,13 @@ class ParallaxPagerTransformer() : ViewPager.PageTransformer {
                 }
                 if (price != null) {
                     val priceWidth = price.width
-                    val priceTranslation = position * priceWidth * 0.3f
+                    val priceTranslation = position * priceWidth * 0.4f
                     price.translationX = priceTranslation
+                }
+                if (name != null) {
+                    val nameWidth = name.width
+                    val nameTranslation = position * nameWidth * 0.4f
+                    name.translationX = nameTranslation
                 }
             }
         }

@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager
 import android.view.WindowManager
 import android.os.Build
 import android.os.Handler
+import android.view.MotionEvent
 import android.view.View
 
 
@@ -16,8 +17,7 @@ class MainActivity : AppCompatActivity() {
     private var mViewPager: ViewPager? = null
     private var mViewPagerAdapter: ViewPagerAdapter? = null
     var argbEvaluator = ArgbEvaluator()
-    var color1 = 0
-    var color2 = 0
+    var colors = ArrayList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
 
-        color1 = resources.getColor(R.color.colorBackground1, null)
-        color2 = resources.getColor(R.color.colorBackground2, null)
+        colors.add(resources.getColor(R.color.colorBackground1, null))
+        colors.add(resources.getColor(R.color.colorBackground2, null))
 
         mViewPager = findViewById(R.id.viewpager)
         mViewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
@@ -48,20 +48,20 @@ class MainActivity : AppCompatActivity() {
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
-                if (position == 0) {
+                if (position < colors.size-1) {
 
                     mViewPager?.setBackgroundColor(
                         argbEvaluator.evaluate(
                             positionOffset,
-                            color1,
-                            color2
+                            colors[position],
+                            colors[position+1]
                         ) as Int
                     )
 
                 } else {
 
                     // the last page color
-                    mViewPager?.setBackgroundColor(color2)
+                    mViewPager?.setBackgroundColor(colors[colors.size-1])
 
                 }
 
