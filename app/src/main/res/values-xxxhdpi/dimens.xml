@@ -7,4 +7,16 @@
 
     <dimen name="height_buy_button">50dp</dimen>
     <dimen name="width_buy_button">188dp</dimen>
+    <dimen name="buy_margin_top">80dp</dimen>
+    <dimen name="margin_detail_view_top">140dp</dimen>
+    <dimen name="margin_detail_view_bottom">100dp</dimen>
+    <dimen name="font_title_detail">80sp</dimen>
+    <dimen name="margin_title2_top">-28dp</dimen>
+    <dimen name="margin_detail_left">24dp</dimen>
+    <dimen name="font_name_detail">16sp</dimen>
+    <dimen name="font_category_detail">23sp</dimen>
+    <dimen name="font_description_detail">20sp</dimen>
+    <dimen name="margin_buy_detail_top">60dp</dimen>
+    <dimen name="font_price_detail">28sp</dimen>
+    <dimen name="margin_title1_top">44dp</dimen>
 </resources>

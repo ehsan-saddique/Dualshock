@@ -79,7 +79,9 @@ class MainActivity : AppCompatActivity() {
         val fragment = mViewPagerAdapter!!.getCurrentFragment() as MainFragment
         fragment.onBackPressed()
         Handler().postDelayed({
-            manager.beginTransaction().detach(fragment).attach(fragment).commit()
+            manager.beginTransaction()
+                .setCustomAnimations(R.anim.fragment_enter_anim, R.anim.fragment_exit_anim)
+                .detach(fragment).attach(fragment).commit()
         }, 400)
     }
 }
