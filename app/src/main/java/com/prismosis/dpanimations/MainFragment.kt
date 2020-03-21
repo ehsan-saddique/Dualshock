@@ -104,9 +104,9 @@ class MainFragment : Fragment() {
                 bottomImage.visibility = View.VISIBLE
                 imageView.startAnimation(animImageBounce)
                 bottomImage.startAnimation(animBottomImage)
-                nameDetail.animate().alpha(1f).duration = 800
-                categoryDetail.animate().setStartDelay(100).alpha(1f).duration = 800
-                descriptionDetail.animate().setStartDelay(300).alpha(1f).duration = 800
+                nameDetail.animate().alpha(1f).duration = 200
+                categoryDetail.animate().setStartDelay(100).alpha(1f).duration = 200
+                descriptionDetail.animate().setStartDelay(100).alpha(1f).duration = 200
             }
 
             override fun onAnimationStart(animation: Animation?) {}
