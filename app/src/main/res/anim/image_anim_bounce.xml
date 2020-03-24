@@ -1,5 +1,5 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-     android:duration="300"
+     android:duration="150"
      android:fillAfter = "true"
      android:fillEnabled = "true">
 
@@ -12,6 +12,6 @@
     <translate android:fromXDelta="0" android:toXDelta="0"
                android:repeatCount="1"
                android:repeatMode="reverse"
-               android:fromYDelta="-111%" android:toYDelta="-110%"
+               android:fromYDelta="-112%" android:toYDelta="-110%"
                 />
 </set>

@@ -2,7 +2,7 @@
      android:fillAfter = "true"
      android:duration="300"
      android:fillEnabled = "true">
-    <translate android:fromXDelta="-50%" android:toXDelta="0"
-               android:fromYDelta="70%" android:toYDelta="0"
+    <translate android:fromXDelta="@dimen/pos_buy_x" android:toXDelta="0"
+               android:fromYDelta="@dimen/pos_buy_y" android:toYDelta="0"
     />
 </set>

@@ -19,4 +19,7 @@
     <dimen name="margin_buy_detail_top">60dp</dimen>
     <dimen name="font_price_detail">28sp</dimen>
     <dimen name="margin_title1_top">44dp</dimen>
+    <item name="size_card_scale" type="dimen">200%</item>
+    <item name="pos_buy_x" type="dimen">-50%</item>
+    <item name="pos_buy_y" type="dimen">70%</item>
 </resources>

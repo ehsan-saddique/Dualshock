@@ -17,9 +17,9 @@
                <!--android:repeatCount="4" android:interpolator="@android:anim/linear_interpolator"-->
                <!--android:duration="2000" />-->
     <scale android:fromXScale="100%"
-           android:toXScale="200%"
+           android:toXScale="@dimen/size_card_scale"
            android:fromYScale="100%"
-           android:toYScale="200%"
+           android:toYScale="@dimen/size_card_scale"
            android:pivotX="50%"
            android:pivotY="50%"
     >
